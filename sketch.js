@@ -134,9 +134,7 @@ function mousePressed(){
       }
     }
       
-  }else{
-    //check every shape to move it
-    if(mouseX > 400 && mouseX < 800){ //inside drawCanvas
+  }else if(mouseX > 400 && mouseX < 800){ //inside drawCanvas
       for(i=0;i<shapes.length;i++){
         s = shapes[i]
         xy =draw_canvas_to_coordinates(s.x,s.y)
@@ -158,8 +156,8 @@ function mousePressed(){
           ml(current_moving_point)
         }
       }
+
     }
-  }
 }
 function is_mouse_in_draw_canvas(mx,my){
   
@@ -333,13 +331,17 @@ function draw() {
         ellipse(xy[0],xy[1],s.width,s.height)
       }
       
-
-      
-      
       fill(0)
-      text("fill("+s.cr+","+s.cg+","+s.cb+")",800,lx)
-      text("ellipse("+s.x+","+s.y+",50,50)",800,lx+10)
+      codebox = select("#codebox")
+      new_code = codebox.value()
+      fill_code = "fill("+s.cr+","+s.cg+","+s.cb+")"
+      text(fill_code,800,lx)
+      shape_code = "ellipse("+s.x+","+s.y+",50,50)"
+      text(shape_code,800,lx+10)
+      new_code = new_code + "\n" + fill_code
+      new_code = new_code + "\n" + shape_code
 
+      codebox.elt.value = new_code
     }
     
     //box for sort list
